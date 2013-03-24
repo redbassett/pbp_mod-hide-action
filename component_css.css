@@ -1,0 +1,15 @@
+tr.post.hiddenPost{
+	border-color:red;
+	border-style:solid;
+	border-width:2px;
+}
+
+tr.post.hiddenPost.hiddenPostStub > td > table{
+	display:none;
+}
+
+tr.post.hiddenPost.hiddenPostStub div.hiddenPostMessage{
+	text-align:center;
+	font-weight:700;
+	font-size:16px;
+}
