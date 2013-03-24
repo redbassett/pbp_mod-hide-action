@@ -1,3 +1,4 @@
+/* Version 0.1.1 */
 com_redbassett_mod_hide = {
     options: {
         groupsAllow: proboards.plugin.get("mod_hide_action").settings.groupsAllow,
