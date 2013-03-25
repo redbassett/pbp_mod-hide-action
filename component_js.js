@@ -1,7 +1,6 @@
 /* Version 0.1.1 */
 com_redbassett_mod_hide = {
     options: {
-        groupsAllow: proboards.plugin.get("mod_hide_action").settings.groupsAllow,
         showStubs: proboards.plugin.get("mod_hide_action").settings.showStubs
     },
     run: function () {
@@ -12,7 +11,7 @@ com_redbassett_mod_hide = {
                 $(this).bind("hidePost", function () {
                     var e = $(this).attr("id").replace("post-", "");
                     $(this).addClass("hiddenPost");
-                    if (com_redbassett_mod_hide.userCanHide()) {
+                    if (com_redbassett_mod_hide.userCanHide(e)) {
                         var t = $("<li>").addClass(e + "-hidePost").append($("<a>").append($("<span>").addClass("icon")).text("Show Post"));
                         t.click(function () {
                             $(this).trigger("showPost")
@@ -39,7 +38,7 @@ com_redbassett_mod_hide = {
                     $(this).show();
                     var e = $(this).attr("id").replace("post-", "");
                     $(this).removeClass("hiddenPost").removeClass("hiddenPostStub").find("div.hiddenPostMessage").remove();
-                    if (com_redbassett_mod_hide.userCanHide()) {
+                    if (com_redbassett_mod_hide.userCanHide(e)) {
                         var t = $("<li>").addClass(e + "-hidePost").append($("<a>").append($("<span>").addClass("icon")).text("Hide Post"));
                         t.click(function () {
                             $(this).trigger("hidePost")
@@ -63,19 +62,8 @@ com_redbassett_mod_hide = {
             })
         }
     },
-    hidePost: function (e) {},
-    showPost: function (e) {},
-    userCanHide: function () {
-        var e = false;
-        var t = proboards.data("user").group_ids || [];
-        for (var n = 0; n < t.length; n++) {
-            var r = t[n];
-            if (this.inArray(r, this.options.groupsAllow)) {
-                e = true;
-                break
-            }
-        }
-        return e
+    userCanHide: function (postId) {
+        return proboards.plugin.key('hidden').can_write(postId);
     },
     inArray: function (e, t) {
         var n = false;
