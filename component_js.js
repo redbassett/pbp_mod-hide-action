@@ -63,6 +63,8 @@ com_redbassett_mod_hide = {
         }
     },
     userCanHide: function (postId) {
+        console.log(postId);
+        console.log(proboards.plugin.key('hidden').can_write(postId));
         return proboards.plugin.key('hidden').can_write(postId);
     },
     inArray: function (e, t) {
