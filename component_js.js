@@ -65,6 +65,7 @@ com_redbassett_mod_hide = {
     userCanHide: function (postId) {
         console.log(postId);
         console.log(proboards.plugin.key('hidden').can_write(postId));
+        console.log(proboards.plugin.key('hidden').can_read(postId));
         return proboards.plugin.key('hidden').can_write(postId);
     },
     inArray: function (e, t) {
@@ -72,10 +73,10 @@ com_redbassett_mod_hide = {
         for (var r = 0; r < t.length; r++) {
             if (e == t[r]) {
                 n = true;
-                break
+                break;
             }
         }
-        return n
+        return n;
     }
 };
 $(document).ready(function () {
